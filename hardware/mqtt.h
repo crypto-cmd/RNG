@@ -192,7 +192,6 @@ void initialize(void){
 
   Serial.println("\n\n***** Wi-Fi CONNECTED! *****\n\n");
    
-  initMQTT();          // INIT MQTT  
   // vUpdateFunction();
   
 }
@@ -252,7 +251,7 @@ void vButtonCheckFunction( void ) {
 
     if( xReturned == pdPASS ){  
       // The task was created.  Use the task's handle to delete the task. 
-      // Serial.println(" vButtonCheck TASK CREATED"); 
+      Serial.println(" vButtonCheck TASK CREATED"); 
     }
     else{
       Serial.println("UNABLE TO CREATE vButtonCheck TASK"); 
