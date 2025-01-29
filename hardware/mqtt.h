@@ -191,8 +191,11 @@ void initialize(void){
   }
 
   Serial.println("\n\n***** Wi-Fi CONNECTED! *****\n\n");
+
+  // Connect to MQTT
+  initMQTT();
    
-  // vUpdateFunction();
+  vUpdateFunction();
   
 }
 

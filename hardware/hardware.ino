@@ -39,7 +39,7 @@
 #define dp 12
 
 // DEFINE VARIABLES FOR TWO LEDs AND TWO BUTTONs. LED_A, LED_B, BTN_A , BTN_B
-#define LED_A 5
+#define LED_A 4
 #define LED_B 5
 #define BTN_A 18
 #define BTN_B 19
@@ -47,7 +47,7 @@
 // MQTT CLIENT CONFIG
 static const char *pubtopic = "620164974";                      // Add your ID number here
 static const char *subtopic[] = {"620164974_sub", "/elet2415"}; // Array of Topics(Strings) to subscribe to
-static const char *mqtt_server = "address or ip";               // Broker IP address or Domain name as a String
+static const char *mqtt_server = "192.168.104.91";             // Broker IP address or Domain name as a String
 static uint16_t mqtt_port = 1883;
 
 // WIFI CREDENTIALS
@@ -115,7 +115,7 @@ void setup()
     delay(500);
     Serial.print(".");
   }
-
+  Serial.println(WiFi.localIP());
   initialize();           // INIT WIFI, MQTT & NTP
   vButtonCheckFunction(); // UNCOMMENT IF USING BUTTONS THEN ADD LOGIC FOR INTERFACING WITH BUTTONS IN THE vButtonCheck FUNCTION
   Display(8);
@@ -124,9 +124,7 @@ void setup()
 
 void loop()
 {
-  // Serial.println("Loop");
-
-  // ADD CODE HERE TO RUN IN THE MAIN LOOP
+  delay(20);
 }
 
 // ####################################################################
@@ -231,14 +229,14 @@ void callback(char *topic, byte *payload, unsigned int length)
 
   if (strcmp(type, "toggle") == 0)
   {
-    // Process messages with ‘{"type": "toggle", "device": "LED A"}’ Schema
+    // Process messages with ‘{"type": "toggle", "device": "LED_A"}’ Schema
     const char *led = doc["device"];
 
-    if (strcmp(led, "LED A") == 0)
+    if (strcmp(led, "LED_A") == 0)
     {
       toggleLED(LED_A);
     }
-    if (strcmp(led, "LED B") == 0)
+    if (strcmp(led, "LED_B") == 0)
     {
       toggleLED(LED_B);
     }
@@ -330,7 +328,8 @@ void setLEDState(int8_t LED, int8_t state)
 void toggleLED(int8_t LED)
 {
   // TOGGLES THE STATE OF SPECIFIC LED
-  digitalWrite(LED, !digitalRead(LED));
+
+  setLEDState(LED, !getLEDStatus(LED));
 }
 
 void GDP(void)
