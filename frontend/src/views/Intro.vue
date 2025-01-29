@@ -10,7 +10,7 @@
           </v-card-item>
           <v-card-item>
             <v-btn class="text-caption" text="Toggle" variant="tonal" color="primary" density="compact"
-              @click="toggle('LED A')"></v-btn>
+              @click="toggle('LED_A')"></v-btn>
           </v-card-item>
         </v-card>
 
@@ -25,7 +25,7 @@
           </v-card-item>
           <v-card-item>
             <v-btn class="text-caption" text="Toggle" variant="tonal" color="primary" density="compact"
-              @click="toggle('LED B')"></v-btn>
+              @click="toggle('LED_B')"></v-btn>
           </v-card-item>
         </v-card>
 
@@ -73,9 +73,11 @@ onMounted(() => {
 
 
 
+
+
 const toggle = (name) => {
   let message = JSON.stringify({ "type": "toggle", "device": name }); // Create message and convert to a json string
-  Mqtt.publish("topic", message); // Publish message to appropriate topic
+  Mqtt.publish("620164974_sub", message); // Publish message to appropriate topic
 }
 
 </script>
@@ -92,14 +94,12 @@ const toggle = (name) => {
 
 .container {
   height: 100%;
-  border: 1px solid blue;
 }
 
 .row {
   width: 100%;
   margin: 10px 0px;
   padding: 10px;
-  border: 1px solid purple;
 }
 
 .col {

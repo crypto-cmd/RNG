@@ -47,7 +47,7 @@
 // MQTT CLIENT CONFIG
 static const char *pubtopic = "620164974";                      // Add your ID number here
 static const char *subtopic[] = {"620164974_sub", "/elet2415"}; // Array of Topics(Strings) to subscribe to
-static const char *mqtt_server = "192.168.104.91";             // Broker IP address or Domain name as a String
+static const char *mqtt_server = "192.168.213.91";             // Broker IP address or Domain name as a String
 static uint16_t mqtt_port = 1883;
 
 // WIFI CREDENTIALS
@@ -145,14 +145,12 @@ void vButtonCheck(void *pvParameters)
     {
       Serial.println("Button A Pressed!");
       GDP();
-      delay(50);
     }
 
     if (digitalRead(BTN_B) == LOW && btnBState == HIGH)
     {
       Serial.println("Button B Pressed!");
       // Add code here to execute appropriate function if button B is pressed
-      delay(50);
     }
     btnAState = digitalRead(BTN_A);
     btnBState = digitalRead(BTN_B);

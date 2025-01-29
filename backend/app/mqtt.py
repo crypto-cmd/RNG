@@ -39,7 +39,7 @@ class MQTT:
         self.client.message_callback_add("620164974_sub", self.toggle)
 
         # ADD MQTT SERVER AND PORT INFORMATION BELOW
-        self.client.connect_async("localhost", 1883, 60)
+        self.client.connect_async("192.168.213.91", 1883, 60)
 
     def connack_string(self, rc):
         connection = {0: "Connection successful", 1: "Connection refused - incorrect protocol version", 2: "Connection refused - invalid client identifier",
